@@ -1,0 +1,10 @@
+# Terraform state files - NEVER commit these
+*.tfstate
+*.tfstate.backup
+.terraform/
+tfplan
+*.tfvars
+
+# SSH keys - NEVER commit these
+*.pem
+*.key
