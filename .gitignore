@@ -8,3 +8,4 @@ tfplan
 # SSH keys - NEVER commit these
 *.pem
 *.key
+tfstate
