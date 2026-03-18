@@ -1,6 +1,6 @@
 # AWS Infrastructure Automation with Terraform
 
-Production-grade AWS Infrastructure provisioned entirely through Terrafrom IaC = eliminating manual setup and enabling consistent repeatable deployments
+Production-grade AWS Infrastructure provisioned entirely through Terrafrom IaC - eliminating manual setup and enabling consistent repeatable deployments
 
 ## Architecture
 ```
@@ -24,10 +24,13 @@ Security Group (port 22 restricted to specific IP)
 | VPC | Isolated private network with DNS enabled |
 | Internet Gateway | Entry point between VPC and internet |
 | Public Subnet | EC2 hosting subnet in ap-south-1a |
-| Route Table | Routes hosting subnet in ap-south-1a |
+| Route Table | Routes internet traffic through IGW |
 | Security Group | Restricts SSH to specific IP only |
 | EC2 Instance | Amazon Linux 2, t2.micro (free tier) |
 | S3 Backend | Remote state storage with versioning enabled |
+| IAM Role            | EC2 identity with S3 read access
+| IAM Policy          | Least-privilege S3 read permissions  
+| Instance Profile    | Attaches IAM role to EC2
 
 ## Key Design Decisions
 
