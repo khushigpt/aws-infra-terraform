@@ -32,6 +32,31 @@ Security Group (port 22 restricted to specific IP)
 | IAM Policy          | Least-privilege S3 read permissions  
 | Instance Profile    | Attaches IAM role to EC2
 
+## Project Structure
+```
+aws-infra-terraform/
+├── main.tf              ← calls vpc and ec2 modules
+├── variables.tf         ← all input variables with defaults
+├── outputs.tf           ← exposes module outputs
+├── providers.tf         ← AWS provider and S3 backend config
+└── modules/
+    ├── vpc/             ← VPC, IGW, subnet, route table
+    │   ├── main.tf
+    │   ├── variables.tf
+    │   └── outputs.tf
+    └── ec2/             ← security group, key pair, IAM, EC2
+        ├── main.tf
+        ├── variables.tf
+        └── outputs.tf
+```
+
+Also add IAM resources to the Infrastructure Components table:
+```markdown
+| IAM Role             | EC2 identity with S3 read access        |
+| IAM Policy           | Least-privilege S3 read permissions     |
+| Instance Profile     | Attaches IAM role to EC2 instance       |
+```
+
 ## Key Design Decisions
 
 **Remote state in S3** - State stored in S3 with versioning enabled 
